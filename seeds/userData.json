@@ -1,0 +1,24 @@
+[
+    {
+      "name": "Black Francis",
+      "email": "frankblack@fb.com",
+      "password": "password12345"
+    },
+    {
+      "name": "Jello Biafra",
+      "email": "jello@biafra.com",
+      "password": "password12345"
+    },
+    {
+      "name": "Carrie Brownstein",
+      "email": "moderngirl@sk.com",
+      "password": "password12345"
+    },
+    {
+        "name": "Kim Deal",
+        "email": "mrsjohnmurphy@cannonball.com",
+        "password": "password12345"
+    }
+  ]
+  
+
