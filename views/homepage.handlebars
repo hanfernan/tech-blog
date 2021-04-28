@@ -2,7 +2,7 @@
     {{#each post as |BlogPost|}}
     <div class="card p-2 m-3" style="width: 20rem;">
         <a href="/post/{{BlogPost.id}}" class="card-link">{{BlogPost.title}}</a>
-        <h5 class="card-subtitle">{{BlogPost.date_created}}</h5>
+        <h5 class="card-text">{{BlogPost.date_created}}</h5>
     </div>
     {{/each}}
 </div>
