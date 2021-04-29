@@ -33,27 +33,54 @@ router.get('/post/:id', async (req, res) => {
 });
 
 //find logged in user's dashboard
-router.get('/dashboard', withAuth, async (req, res) => {
+// router.get('/dashboard', withAuth, async (req, res) => {
+//     try {
+//         // Find the logged in user based on the session ID
+//         const userData = await User.findByPk(req.session.user_id, {
+//             //don't include password column
+//             attributes: { exclude: ['password'] },
+//             include: [{ model: BlogPost }],
+//         });
+
+//         const blogPost = await BlogPost.findByPk({})
+//         console.log(blogPost);
+//         const userPost = blogPost.map((post) => post.get({ plain: true }));
+
+//         res.render('dashboard', {
+//             ...userPost,
+//             logged_in: true
+//         });
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
+
+router.get("/dashboard", withAuth, async (req, res) => {
     try {
-        // Find the logged in user based on the session ID
-        const userData = await User.findByPk(req.session.user_id, {
-            //don't include password column
-            attributes: { exclude: ['password'] },
-            include: [{ model: BlogPost }],
+        const postData = await BlogPost.findAll({
+            // where: {
+            //     userId: req.session.userId,
+            // },
+            include: [
+                // {
+                //     model: Comments,
+                // },
+                {
+                    model: User,
+                    attributes: ["name"],
+                },
+            ],
         });
-
-        const blogPost = await BlogPost.findByPk({})
-        console.log(blogPost);
-        const userPost = blogPost.map((post) => post.get({ plain: true }));
-
-        res.render('dashboard', {
-            ...userPost,
-            logged_in: true
+        const posts = postData.map((post) => post.get({ plain: true }));
+        res.render("dashboard", {
+            posts,
+            logged_in: req.session.logged_in,
         });
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
 //log in 
 router.get('/login', (req, res) => {
     // if (req.session.logged_in) {
