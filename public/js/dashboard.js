@@ -28,20 +28,20 @@ const newFormHandler = async (event) => {
       const response = await fetch(`/api/posts/${id}`, {
         method: 'DELETE',
       });
-  //TODO: fix this. /profile isn't a thing
+  
       if (response.ok) {
-        document.location.replace('/profile');
+        document.location.replace('/dashboard');
       } else {
-        alert('Failed to delete project');
+        alert('Failed to delete post');
       }
     }
   };
   
   document
-    .querySelector('.new-project-form')
+    .querySelector('.new-post-form')
     .addEventListener('submit', newFormHandler);
   
   document
-    .querySelector('.project-list')
+    .querySelector('.post-list')
     .addEventListener('click', delButtonHandler);
   
